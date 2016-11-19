@@ -1,3 +1,6 @@
-from django.test import TestCase
+from user import views
+from django.conf.urls import url, include
 
-# Create your tests here.
+urlpatterns = [
+	url(r'^$', views.user,name="user"),
+	]

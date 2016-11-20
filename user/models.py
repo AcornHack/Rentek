@@ -14,3 +14,16 @@ class CustomUser(User):
 		customuser = cls(address=address,credit_number=credit_number,security_code=security_code,expiry_date=expiry_date,card_type=card_type,phone_number=phone_number)
 		customuser.save()
 		return(customuser)
+
+class Profile(models.Model):
+	user = models.OneToOneField(User,on_delete=models.CASCADE)
+	body = models.TextField(default= "Hello, I'm a new user.")
+
+	def __str__(self):
+		return("Profile of "+self.user.username)
+
+	@classmethod
+	def create(cls,user):
+		profile = cls(user=user)
+		profile.save()
+		return(profile)
